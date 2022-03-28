@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+string input() {
+    string operation;
+    cout << "please enter the string:";
+    getline(cin, operation);
+    operation.erase(remove(operation.begin(), operation.end() ,' '), operation.end());
+    return operation ;
+}
+char valid(string operation, int num1, int&num2, int num3, int num4, char op1, char op2, char op3){
+    num1 = stoi(operation, nullptr, 10);
+    op1 = operation.find('/'||'*'||'+'||'-');
+    string str1 = operation.substr(op1+1, (operation.size()-op1)-1 );
+    num2 = stoi(operation, nullptr, 10);
+    op2 = operation.find('/'||'*'||'+'||'-');
+    string str2 = operation.substr(op2+1, (operation.size()-op2)-1 );
+    int n3 = stoi(operation,nullptr, 10);
+    op3 = operation.find('/'||'*'||'+'||'-');
+    string str3 = operation.substr(op3+1,(operation.size()-op3)-1 );
+    num4 = n3 = stoi(operation,nullptr,10);
+    return num1, num2, num3, num4;
+}
+int main(){
+    int num1 = 1,num2 = 1,num3 = 1,num4 = 1, totalnom, totaldom;
+    char op1='/',op2='/',op3='/';
+    while(true){
+        if(valid(input(), num1, num2, num3, num4, op1, op2, op3))
+        {
+            //return num1,num2,num3,num4,op1,op2,op3;
+            break;
+        }
+        else cout << "the operation you enter isn't correct ";
+    }
+    if(op2 = '+'){
+        totalnom = (num1*num4+num2*num3);
+        totaldom = (num2*num4);
+        cout << num1 << "/" << num2 << "" <<op2<< ""<< num3 <<"/"<<num4<<" = " << totalnom << "/" <<totaldom ;
+    }
+    else if(op2 = '-'){
+        totalnom = (num1*num4-num2*num3);
+        totaldom = (num2*num4);
+        cout << num1 << "/" << num2 << "" <<op2<< ""<< num3 <<"/"<<num4<<" = " << totalnom << "/" <<totaldom ;
+    }
+    else if(op2 = '*'){
+        totalnom = (num1*num3);
+        totaldom = (num2*num4);
+        cout << num1 << "/" << num2 << "" <<op2<< ""<< num3 <<"/"<<num4<<" = " << totalnom << "/" <<totaldom ;
+    }
+    else if(op2 = '/'){
+        totalnom = (num1*num4);
+        totaldom = (num2*num3);
+        cout << num1 << "/" << num2 << "" <<op2<< ""<< num3 <<"/"<<num4<<" = " <<totalnom << "/" <<totaldom ;
+    }
+    return 0 ;
+}
